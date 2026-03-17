@@ -1,5 +1,20 @@
 {% extends 'main/base.html' %}
 {% block content %}
+    <h1>Home</h1>
+
+
+    <div>
+        <a href="{% url 'create-post' %}">Create Post</a>
+        <div>
+            {% for post in posts  %}
+                <div>
+                    <a href="{% url 'update-post' post.id %}">Edit</a>
+                    <a href="{% url 'delete-post' post.id %}">Delete</a>
+                    <a href="{% url 'post' post.id %}"> <h2>{{ post.title }}</h2></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
 
 {% endblock %}

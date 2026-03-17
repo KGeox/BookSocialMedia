@@ -8,6 +8,8 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
+hp
+q
 """
 
 from pathlib import Path
