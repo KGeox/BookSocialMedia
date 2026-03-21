@@ -35,6 +35,7 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='posts', null=True, blank=True)
     reads = models.IntegerField(default=0)
+    # similar = models.ManyToManyField(Post, blank=True)
 
     class Meta:
         ordering = ['-date']

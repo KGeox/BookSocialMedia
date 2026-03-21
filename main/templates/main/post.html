@@ -1,24 +1,52 @@
-{% block card %}
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
 <style>
-    .card {
-        background-color: blue;
-        
-    }
-    .img {
-        width: 200px;
+    .room-container{
+        display:grid;
+        grid-template-columns: 3fr 1fr;
 
     }
 </style>
-<div>
-    <div class="card">
-        <img src="" alt="img">
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.content }}</p>
-        <p class="ref">{{ post.ref }}</p>
-
-    </div>
+<div class="room-container">
     <div>
-        <h5></h5>
+
+        <h1>{{post.title}}</h1>
+
+        <p>{{post.content}}</p>
+
+        <div class="comment-wrapper">
+            <h3>Reflections</h3>
+            <hr>
+
+            {% for comment in comments%}
+            <div>
+                <small>@{{comment.author}} {{comment.date|timesince}}</small>
+                <p>{{ comment.content }}</p>
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class="comment-form">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" name="content" placeholder="Write your message">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        {% endif %}    
     </div>
+
+    <div>
+        <h3>Similar posts</h3>
+        <hr>
+    </div>
+
 </div>
-{% endblock %}
+    
+{% endblock content %}
+
+    
