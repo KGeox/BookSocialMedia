@@ -58,7 +58,7 @@ def about(request):
     return render(request, 'main/about.html')
 
 def profile(request):
-    posts = Post.objects.filter(author=request.user)
+    posts = Post.objects.filter(author=request.user.profile)
     context = {'posts': posts}
     return render(request, 'main/profile.html', context)
 
@@ -72,7 +72,7 @@ def updatePost(request, pk):
     post = Post.objects.get(id=pk)
     form = PostForm(instance=post)
 
-    if request.user != post.author:
+    if request.user != post.author.user:
         return HttpResponse('You are  not allowed here!')
 
     if request.method == 'POST':
@@ -88,7 +88,7 @@ def updatePost(request, pk):
 def deletePost(request,pk):
     post = Post.objects.get(id=pk)
 
-    if request.user != post.author:
+    if request.user != post.author.user:
         return HttpResponse('You are  not allowed here!')
 
     if request.method == 'POST':
