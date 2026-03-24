@@ -27,7 +27,7 @@ def home(request):
 
 def post(request, pk):
     post = Post.objects.get(id=pk)
-    comments = Comment.objects.filter(post=pk)
+    comments = Comment.objects.filter(post=pk).order_by('-date')
 
     if request.method == 'POST':
         if not request.user.is_authenticated:
@@ -142,3 +142,15 @@ def registerPage(request):
 
     context = {'form': form}
     return render(request, 'main/login_register.html', context)
+
+@login_required(login_url='/login')
+def deleteComment(request,pk):
+    comment = Comment.objects.get(id=pk)
+
+    if request.user != comment.author.user:
+        return HttpResponse('You are  not allowed here!')
+
+    if request.method == 'POST':
+        comment.delete()
+        return redirect('post', pk=comment.post.id)
+    return render(request, 'main/delete.html', {'obj': comment})
