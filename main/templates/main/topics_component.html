@@ -1,0 +1,12 @@
+            <h3>Browse Books</h3>
+            <hr>
+            <div>
+                <a href="{% url 'home' %}">All</a>
+            </div>
+            <div>
+                {% for book in books %}
+                <div>
+                    <a href="{% url 'home' %}?q={{book.title}}">{{ book.title }}</a>
+                </div>
+                {% endfor %}
+            </div>

@@ -17,7 +17,7 @@
     {% if request.user.is_authenticated %}
     <p>Hello {{ request.user }}
     <a href="{% url 'logout' %}">logout</a>
-    <ul class="nav-links"><a href="{% url 'profile' %}">profile</a></ul>
+    <ul class="nav-links"><a href="">profile</a></ul>
     
     {% else %}
     

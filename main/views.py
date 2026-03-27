@@ -22,7 +22,15 @@ def home(request):
     )
     books = Book.objects.all()
     post_count = posts.count()
-    context = {'posts': posts, 'books' : books, 'post_count': post_count }
+    post_comments = Comment.objects.filter(
+        Q(post__Book__title__icontains=q)
+    )
+
+    context = {'posts': posts,
+               'books' : books,
+               'post_count': post_count,
+               'post_comments': post_comments,
+    }
     return render(request, 'main/home.html', context)
 
 def post(request, pk):
@@ -57,9 +65,12 @@ def createPost(request):
 def about(request):
     return render(request, 'main/about.html')
 
-def profile(request):
-    posts = Post.objects.filter(author=request.user.profile)
-    context = {'posts': posts}
+def profile(request, pk):
+    profile = Profile.objects.get(id=pk)
+    posts = profile.post_set.all()
+    post_comments = profile.comment_set.all()
+    books = Book.objects.all()
+    context = {'posts': posts, 'profile': profile, 'post_comments': post_comments, 'books': books}
     return render(request, 'main/profile.html', context)
 
 def book(request, pk):
