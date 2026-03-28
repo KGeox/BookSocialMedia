@@ -35,7 +35,7 @@ class Post(models.Model):
     reference = models.TextField(max_length=100)
     content = models.TextField(max_length = 500)
     date = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='static/images', null=True, blank=True)
+    image = models.ImageField(upload_to='posts/', null=True, blank=True)
     reads = models.IntegerField(default=0)
     # similar = models.ManyToManyField(Post, blank=True)
 

@@ -1,17 +1,11 @@
 {% extends 'main/base.html' %}
 {% block content %}
 
-<style>
-    .profile-container{
-        display:grid;
-        grid-template-columns: 1fr 3fr 1fr;
-    }
-</style>
 
 <div class="container">
     <h1>{{ profile }}</h1>
 </div>
-<div class="profile-container">
+<div class="home-container">
 
     <div>
         {% include 'main/topics_component.html' %}

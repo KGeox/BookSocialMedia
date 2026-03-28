@@ -53,7 +53,7 @@ def post(request, pk):
 def createPost(request):
     form = PostForm()
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user.profile
@@ -69,7 +69,7 @@ def profile(request, pk):
     profile = Profile.objects.get(id=pk)
     posts = profile.post_set.all()
     post_comments = profile.comment_set.all()
-    books = Book.objects.all()
+    books = Book.objects.filter(post__author=profile)
     context = {'posts': posts, 'profile': profile, 'post_comments': post_comments, 'books': books}
     return render(request, 'main/profile.html', context)
 
@@ -87,7 +87,7 @@ def updatePost(request, pk):
         return HttpResponse('You are  not allowed here!')
 
     if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
             return redirect('home')
