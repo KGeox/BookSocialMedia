@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1bd3ac1-95f8-4502-bebc-951e3776419a" name="Changes" comment="commit 24032026">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BookSocialMedia/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookSocialMedia/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/book.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/book.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/post.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/post_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/post_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/main/topics_component.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/main/topics_component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
