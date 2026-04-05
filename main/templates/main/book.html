@@ -1,6 +1,16 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<h1>{{ book }}</h1>
+<h3> By {{ book.author }}</h3>
+<div class="home-container">
+    <div>
+        {{ book.summary }}
+    </div>
 
+    <div>
+        {% include 'main/feed_component.html' %}
+    </div>
 
+</div>
 {% endblock %}

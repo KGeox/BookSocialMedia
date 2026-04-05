@@ -16,17 +16,18 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+
 class Book(models.Model):
     author = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     genre = models.TextField()
     image = models.ImageField(upload_to='posts')
     summary = models.TextField(max_length=500, null=True, blank=True)
-
-
+    valid = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
+
 
 class Post(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
@@ -45,6 +46,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
 class Comment(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -57,10 +59,12 @@ class Comment(models.Model):
     def __str__(self):
         return self.content
 
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):

@@ -2,7 +2,7 @@ import django.contrib.auth
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from .models import Post, Book, Comment, Profile
-from .forms import PostForm
+from .forms import PostForm, BookForm
 from django.contrib.auth.models import  User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -18,9 +18,11 @@ def home(request):
     posts = Post.objects.filter(
         Q(Book__title__icontains=q) |
         Q(title__icontains=q) |
-        Q(content__icontains=q)
+        Q(content__icontains=q),
+        Book__valid=True
     )
-    books = Book.objects.all()
+
+    books = Book.objects.filter(valid=True)
     post_count = posts.count()
     post_comments = Comment.objects.filter(
         Q(post__Book__title__icontains=q)
@@ -69,13 +71,14 @@ def profile(request, pk):
     profile = Profile.objects.get(id=pk)
     posts = profile.post_set.all()
     post_comments = profile.comment_set.all()
-    books = Book.objects.filter(post__author=profile)
+    books = Book.objects.filter(post__author=profile, valid=True)
     context = {'posts': posts, 'profile': profile, 'post_comments': post_comments, 'books': books}
     return render(request, 'main/profile.html', context)
 
 def book(request, pk):
     book =Book.objects.get(id=pk)
-    context = {'book': book}
+    posts = book.post_set.all()
+    context = {'book': book, 'posts': posts}
     return render(request, 'main/book.html', context)
 
 @login_required(login_url='/login')
@@ -165,3 +168,16 @@ def deleteComment(request,pk):
         comment.delete()
         return redirect('post', pk=comment.post.id)
     return render(request, 'main/delete.html', {'obj': comment})
+
+@login_required(login_url='/login')
+def createBook(request):
+    form = BookForm()
+    if request.method == 'POST':
+        form = BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.author = request.user.profile
+            book.save()
+            return redirect(request.META.get('HTTP_REFERER', 'home'))
+    context = {'form': form}
+    return render(request, 'main/post_form.html', context)

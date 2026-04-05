@@ -4,16 +4,16 @@
                 <a href="{% url 'home' %}">All</a>
             </div>
             <div>
+                <a href="{% url 'create-book' %}">Add a Book</a>
                 {% if books %}
                     {% for book in books %}
                     <div>
-                        <a href="{% url 'home' %}?q={{book.title}}">{{ book.title }}</a>
+                        <a href="{% url 'home' %}?q={{book.title}}">{{ book.title }}</a><a href="{% url 'book' book.id %}">See</a>
                     </div>
                     {% endfor %}
                 {% else %}
                     <p>hmm</p>
                     <h5> It looks like no book have been used yet</h5>
-                    <a href="{% url 'create-post' %}">Create Post</a>
 
                 {% endif %}
             </div>
