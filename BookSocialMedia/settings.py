@@ -28,7 +28,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = ['https://booksocialmedia.onrender.com']
 
 
 # Application definition
@@ -44,6 +43,7 @@ INSTALLED_APPS = [
 
     "crispy_forms",
     "crispy_bootstrap5",
+
 
 ]
 
