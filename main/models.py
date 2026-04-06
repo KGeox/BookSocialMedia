@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import  User
-from django.db.models.signals import post_init, post_save
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
@@ -18,11 +18,27 @@ class Profile(models.Model):
 
 
 class Book(models.Model):
+    GENRE_CHOICES = [
+        ('fiction', 'Fiction'),
+        ('romance', 'Romance'),
+        ('non-fiction', 'Non-fiction'),
+        ('fantasy', 'Fantasy'),
+        ('sci-fi', 'Sci-Fi'),
+        ('historical', 'Historical'),
+        ('mystery', 'Mystery'),
+        ('biography', 'Biography'),
+        ('philosophy', 'Philosophy'),
+        ('poetry', 'Poetry'),
+        ('horror', 'Horror'),
+        ('adventure', 'Adventure'),
+        ('other', 'Other'),
+
+    ]
     author = models.CharField(max_length=200)
-    title = models.CharField(max_length=200)
-    genre = models.TextField()
+    title = models.CharField(max_length=500)
+    genre = models.TextField(max_length=100, choices=GENRE_CHOICES, default='other')
     image = models.ImageField(upload_to='posts')
-    summary = models.TextField(max_length=500, null=True, blank=True)
+    summary = models.TextField(max_length=5000, null=True, blank=True)
     valid = models.BooleanField(default=False)
 
     def __str__(self):
@@ -34,7 +50,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     Book = models.ForeignKey(Book, on_delete=models.CASCADE)
     reference = models.TextField(max_length=100)
-    content = models.TextField(max_length = 500)
+    content = models.TextField(max_length = 2000)
     date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='posts/', null=True, blank=True)
     reads = models.IntegerField(default=0)
@@ -58,6 +74,35 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
+
+class BookClub(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField(max_length=500, null=True, blank=True)
+    host = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='hosted_clubs')
+    members = models.ManyToManyField(Profile, blank=True, related_name='members')
+    current_book = models.ForeignKey(Book, on_delete=models.SET_NULL, blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+class ReadingProgress(models.Model):
+    STATUS_CHOICES = [
+        ('wishlist', 'Want to Read'),
+        ('Both', 'Both the book💸📖'),
+        ('reading', 'Reading🧐'),
+        ('finished', 'Finished🥳'),
+    ]
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    status = models.CharField( max_length=40, choices=STATUS_CHOICES, default='wishlist')
+
+    class Meta:
+        unique_together = ('profile', 'book')
+
+    def __str__(self):
+        return f"{self.profile} {self.book} ({self.status}"
 
 
 @receiver(post_save, sender=User)

@@ -3,6 +3,9 @@
 {% block content %}
 <h1>{{ book }}</h1>
 <h3> By {{ book.author }}</h3>
+{% if book.image %}
+    <img src="{{book.image.url}}" class="post-image"/>
+{% endif %}
 <div class="home-container">
     <div>
         {{ book.summary }}
@@ -11,6 +14,7 @@
     <div>
         {% include 'main/feed_component.html' %}
     </div>
+    <div></div>
 
 </div>
 {% endblock %}

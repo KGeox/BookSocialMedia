@@ -7,18 +7,18 @@
     </form>
     <div class="nav-links">
         <a href="{% url 'home' %}">home</a>
+        <a href="{% url 'bookClub-list' %}">Book Clubs</a>
         <a href="{% url 'about' %}">about</a>
     </div>
+
     <div class="nav-user">
         {% if request.user.is_authenticated %}
-        <p>Hello {{ request.user }}
-        <a href="{% url 'logout' %}">logout</a>
+        <p>Hello {{ request.user }}</p>
         <ul ><a href="{% url 'profile' user.id %}">profile</a></ul>
-        
+        <a href="{% url 'logout' %}">logout</a>
         {% else %}
         
         <a href="{% url 'login' %}">login</a>
-        
         
         {% endif %}
     </div>

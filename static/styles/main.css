@@ -25,7 +25,7 @@ hr {
     align-items: center;
     background-color: rgb(244, 231, 207);
     border-bottom: 1px solid yellow;
-    padding: 10px 20 px;
+    padding: 10px 20px;
     flex-wrap: wrap;
 }
 
@@ -109,6 +109,8 @@ a:hover {
 .post-viewing{
     
 }
+
+
 
 @media (max-width: 600px) {
     .navbar {

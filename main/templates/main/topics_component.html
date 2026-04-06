@@ -3,6 +3,20 @@
             <div>
                 <a href="{% url 'home' %}">All</a>
             </div>
+
+            {% if genre_choices %}
+                <div>
+                    <h4>Filter by Genre</h4>
+                    {% for value,label in genre_choices %}
+                    <div>
+                        <a href="{% url 'home' %}?genre={{value}}{% if current_q %}&q={{ current_q }}{% endif %}">{{ label }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <hr>
+            <hr>
+
             <div>
                 <a href="{% url 'create-book' %}">Add a Book</a>
                 {% if books %}
@@ -16,4 +30,19 @@
                     <h5> It looks like no book have been used yet</h5>
 
                 {% endif %}
+
+                <div>
+                    <h3>Book Clubs</h3>
+                    <a href="{% url 'bookClub-list' %}">See all clubs</a>
+                    {% for club in clubs %}
+                        <div>
+                            <a href="{% url 'bookClub-detail' club.id %}">{{ club.name }}</a>
+                            <p> {{ club.members.count }} member</p>
+                            <p>{{ club.description }}</p>
+                            <p>{{ club.name }}</p>
+
+                        </div>
+                    {% endfor %}
+                    <a href="{% url 'create-bookClub' %}"> Create a club</a>
+                </div>
             </div>

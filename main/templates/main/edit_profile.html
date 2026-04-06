@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="home-container" >
+    <div></div>
+    <div>
+        <h2>Edit Profile</h2>
+        <form method="POST" enctype="multipart/form-data" action="">
+            {% csrf_token %}
+            <h4>Account Info</h4>
+            {{ user_form|crispy }}
+            <hr>
+            <h4>Profile</h4>
+            {{ profile_form|crispy }}
+            <input type="submit" value="Update Profile">
+            <a href="{% url 'profile' request.user.profile.id %}">Cancel</a>
+        </form>
+    </div>
+    <div></div>
+</div>
+
+
+{% endblock %}

@@ -8,9 +8,9 @@
     <div>
 
         <h1>{{post.title}}</h1>
-
-        <img src="{{post.image.url}}" class="post-image"/
-
+        {% if post.image %}
+        <img src="{{post.image.url}}" class="post-image"/>
+        {% endif %}
         <p>{{post.content}}</p>
 
         <div class="comment-wrapper">
