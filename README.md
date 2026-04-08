@@ -12,6 +12,13 @@ It is a social media platform made to post book and posts about the books
 * There are clubs that you can create and join
 
 ---
+
+## with what was it made:
+- Python
+- Django
+- Html
+- CSS
+
 ## How to install it
 
 1. clone the repo, with the code below
@@ -29,9 +36,21 @@ It is a social media platform made to post book and posts about the books
 - To create an admin write ( python manage.py createsuperuser ) fill the infos then go to...
 - https:// 127.0.0.1:8000/admin and start managing like an admin
 
-#  an example of the website can be found at "https://booksocialmedia.pythonanywhere.com/"
+#  an example (Demo) of the website can be found at "https://booksocialmedia.pythonanywhere.com/"
 
 - For the modifications of the project it is a normaldjango project no big difference just to know the basics
 
+## How You can contribute
+- Giving ideas about what you want to see in the project
+- Reporting any bug 
+- send a code of an update that can be made on any feature
+
+
+## How it can be deployed
+- link the git repository to a web server set the database if needed
+- run " python manage.py runserver "
+- And enjoy
+
 ##### thanks for reading
 
+<img src="https://drive.google.com/file/d/1RTKVTL9GX_0HTrtPRgo_8VoX-v8xBn2S/view?usp=sharing">
