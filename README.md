@@ -52,5 +52,4 @@ It is a social media platform made to post book and posts about the books
 - And enjoy
 
 ##### thanks for reading
-
-<img src="https://drive.google.com/file/d/1RTKVTL9GX_0HTrtPRgo_8VoX-v8xBn2S" />
+![demo.png](demo.png)
