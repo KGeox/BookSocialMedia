@@ -53,4 +53,3 @@ It is a social media platform made to post book and posts about the books
 
 ##### thanks for reading
 ![demo.png](demo.png)
-[demo.png.url](../../AppData/Local/Temp/demo.png.url)
